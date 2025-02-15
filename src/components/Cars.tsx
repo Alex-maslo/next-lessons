@@ -1,26 +1,20 @@
-import { getData } from "@/services/api.service";
+import React from "react";
 import Navbar from "@/components/Navbar";
+import { getData } from "@/services/api.service";
 import Car from "@/components/Car";
 import { ICar } from "@/models/ICar";
 
-export async function getServerSideProps() {
-  const cars = await getData();
+const Cars = async () => {
+  const cars: ICar[] = await getData();
 
-  return {
-    props: { cars },
-  };
-}
-
-const Cars = ({ cars }: { cars: ICar[] }) => {
   return (
-    <>
+    <div className="grid grid-cols-5 gap-4 mt-20">
       <Navbar cars={cars} />
-      <div className={`grid sm:grid-cols-5 gap-3 p-3 mt-16`}>
-        {cars.map((car) => (
-          <Car key={car.id} car={car} />
-        ))}
-      </div>
-    </>
+
+      {cars.map((car) => (
+        <Car key={car.id} car={car} />
+      ))}
+    </div>
   );
 };
 
