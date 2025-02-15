@@ -8,7 +8,7 @@ const Cars = async () => {
   const cars: ICar[] = await getData();
 
   return (
-    <div className="grid grid-cols-5 gap-4 mt-20">
+    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-20">
       <Navbar cars={cars} />
 
       {cars.map((car) => (
